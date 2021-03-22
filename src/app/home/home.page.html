@@ -14,10 +14,17 @@
   </ion-header>
 
   <ion-grid class="list">
-    <ion-row>
+    <ion-row *ngIf="loaded; else skeletons">
       <ion-col *ngFor="let asset of assets" size-xl="4" size-md="6" size="12">
         <app-asset-card [asset]="asset"></app-asset-card>
       </ion-col>
     </ion-row>
+    <ng-template #skeletons>
+      <ion-row>
+        <ion-col *ngFor="let asset of emptyList" size-xl="4" size-md="6" size="12">
+          <app-asset-card [asset]="asset"></app-asset-card>
+        </ion-col>
+      </ion-row>
+    </ng-template>
   </ion-grid>
 </ion-content>

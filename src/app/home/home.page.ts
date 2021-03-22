@@ -9,11 +9,16 @@ import { AssetService } from '../shared/services/asset.service'
 })
 export class HomePage {
   assets: Asset[] = []
+  emptyList = [undefined, undefined, undefined]  
+  loaded: boolean = false
 
   constructor(private assetService: AssetService) {}
 
   ionViewWillEnter(): void {
     this.assets = []
-    this.assetService.getAll().subscribe(assets => this.assets = assets)
+    this.assetService.getAll().subscribe(assets => {
+      this.assets = assets
+      this.loaded = true
+    })
   }
 }
